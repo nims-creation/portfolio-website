@@ -1,5 +1,5 @@
 import React from 'react';
-import profileImg from '/Users/apple/Desktop/projects/ portfolio-website/src/assets/img.jpeg'; // Replace with your actual image path
+import profileImg from '../assets/img.jpeg'; // Replace with your actual image path
 
 const Hero = () => {
   return (
@@ -32,7 +32,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Profile Image */}
+        {/* Profile Image  */}
         <div
           className="w-72 h-72 rounded-full overflow-hidden border-4 border-orange-400 shadow-lg transform transition hover:scale-105"
           data-aos="fade-left"
