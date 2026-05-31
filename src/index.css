@@ -2,8 +2,207 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add this to your index.css */
+/* ============================================================
+   CSS CUSTOM PROPERTIES — ML/AI Design System
+   ============================================================ */
+:root {
+  --color-bg:        #030712;
+  --color-surface:   #0a0f1e;
+  --color-border:    rgba(255,255,255,0.08);
+  --color-violet:    #7c3aed;
+  --color-cyan:      #22d3ee;
+  --color-orange:    #f97316;
+  --color-text:      rgba(255,255,255,0.90);
+  --color-muted:     rgba(255,255,255,0.55);
+
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --transition-base: 0.3s ease;
+  --radius-card: 1.25rem;
+}
+
+/* ============================================================
+   BASE RESETS
+   ============================================================ */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-violet), var(--color-cyan));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8b5cf6, #06b6d4);
+}
+
+/* ============================================================
+   DOT GRID BACKGROUND OVERLAY (applied globally)
+   ============================================================ */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ============================================================
+   GLASSMORPHISM CARD UTILITY
+   ============================================================ */
+@layer components {
+  .glass-card {
+    @apply relative rounded-2xl border bg-white/5 backdrop-blur-md;
+    border-color: var(--color-border);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset, 0 4px 32px rgba(0,0,0,0.4);
   }
-  
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+  .glass-card-hover:hover {
+    border-color: rgba(124, 58, 237, 0.4);
+    box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.2) inset,
+                0 0 40px rgba(124, 58, 237, 0.15),
+                0 4px 32px rgba(0,0,0,0.4);
+  }
+
+  /* Gradient text utility */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #a78bfa 0%, #22d3ee 50%, #f97316 100%);
+  }
+
+  .gradient-text-violet {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #a78bfa, #7c3aed);
+  }
+
+  .gradient-text-cyan {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #22d3ee, #06b6d4);
+  }
+
+  /* Neon glow text */
+  .neon-violet {
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.8), 0 0 40px rgba(124, 58, 237, 0.4);
+  }
+
+  .neon-cyan {
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.8), 0 0 40px rgba(34, 211, 238, 0.4);
+  }
+
+  /* Section padding utility */
+  .section-padding {
+    @apply py-20 md:py-28 px-6 md:px-20;
+  }
+
+  /* Pill/badge utility */
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80;
+  }
+
+  .badge-violet {
+    @apply badge;
+    border-color: rgba(124, 58, 237, 0.4);
+    background: rgba(124, 58, 237, 0.1);
+    color: #c4b5fd;
+  }
+
+  .badge-cyan {
+    @apply badge;
+    border-color: rgba(34, 211, 238, 0.4);
+    background: rgba(34, 211, 238, 0.08);
+    color: #67e8f9;
+  }
+
+  .badge-orange {
+    @apply badge;
+    border-color: rgba(249, 115, 22, 0.4);
+    background: rgba(249, 115, 22, 0.08);
+    color: #fdba74;
+  }
+
+  /* Section heading with gradient underline */
+  .section-title {
+    @apply font-heading text-3xl md:text-4xl font-bold text-white;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin-top: 12px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-violet), var(--color-cyan));
+  }
+  .section-title.centered::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ============================================================
+   SHIMMER LOADING ANIMATION
+   ============================================================ */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ============================================================
+   ANIMATED GRADIENT BORDER
+   ============================================================ */
+.animated-border {
+  position: relative;
+}
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-violet), var(--color-cyan), var(--color-orange));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.animated-border:hover::before {
+  opacity: 1;
+}
