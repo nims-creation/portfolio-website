@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import ThankYou from './components/ThankYou';
 import Projects from './components/Projects';
 import ScrollProgress from './components/ScrollProgress';
+import PageTransition from './components/PageTransition';
+import { AnimatePresence } from 'framer-motion';
 
 
 const App = () => {
@@ -17,21 +19,28 @@ const App = () => {
     <Router>
       <div className="bg-[#030712] min-h-screen font-sans">
         <ScrollProgress />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Navbar />
-              <Hero />
-              <About />
-              <Projects />
-              <Skills />
-              <Contact />
-              <Footer />
-
-            </>
-          } />
-          <Route path="/thank-you" element={<ThankYou />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={
+              <PageTransition>
+                <>
+                  <Navbar />
+                  <Hero />
+                  <About />
+                  <Projects />
+                  <Skills />
+                  <Contact />
+                  <Footer />
+                </>
+              </PageTransition>
+            } />
+            <Route path="/thank-you" element={
+              <PageTransition>
+                <ThankYou />
+              </PageTransition>
+            } />
+          </Routes>
+        </AnimatePresence>
       </div>
     </Router>
   );
