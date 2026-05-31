@@ -6,21 +6,9 @@ import { FiExternalLink, FiGithub, FiSearch, FiX, FiFilter } from 'react-icons/f
 import airWritingImg  from '../assets/project_air_writing.png';
 import medicalAIImg   from '../assets/project_medical_ai.png';
 import flavorMatchImg from '../assets/project_flavormatch.png';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mql = window.matchMedia?.('(prefers-reduced-motion: reduce)');
-    if (!mql) return;
-    const onChange = () => setReduced(!!mql.matches);
-    onChange();
-    mql.addEventListener?.('change', onChange);
-    return () => mql.removeEventListener?.('change', onChange);
-  }, []);
-  return reduced;
-}
-
 function TechBadge({ children }) {
   return (
     <span className="inline-flex items-center rounded-full border border-violet-500/20 bg-violet-600/10 px-3 py-1 text-xs font-medium text-violet-300">
