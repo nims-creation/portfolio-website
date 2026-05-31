@@ -13,11 +13,18 @@ import NotFound from './components/NotFound';
 import ScrollProgress from './components/ScrollProgress';
 import PageTransition from './components/PageTransition';
 import { AnimatePresence } from 'framer-motion';
+import { useScrollToHash } from './hooks/useScrollToHash';
+
+function ScrollHandler() {
+  useScrollToHash();
+  return null;
+}
 
 
 const App = () => {
   return (
     <Router>
+      <ScrollHandler />
       <div className="bg-[#030712] min-h-screen font-sans">
         <ScrollProgress />
         <AnimatePresence mode="wait">
