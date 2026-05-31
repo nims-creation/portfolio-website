@@ -194,7 +194,10 @@ const Hero = () => {
               View Projects <FiArrowRight className="text-base" />
             </a>
             <a
-              href="#contact"
+              href="/resume.pdf"
+              download
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-violet-500/50 hover:bg-white/10 hover:scale-105"
             >
               <FiDownload className="text-base" /> Download Resume
