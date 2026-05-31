@@ -12,11 +12,29 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Active section tracking via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = navLinks.map(l => l.href.replace('#', ''));
+    const observers = [];
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { threshold: 0.35 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach(o => o.disconnect());
   }, []);
 
   return (
@@ -42,17 +60,27 @@ const Navbar = () => {
 
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map(({ href, label }) => (
-            <li key={href}>
-              <a
-                href={href}
-                className="relative text-sm font-medium text-white/70 hover:text-white transition-colors duration-200 group"
-              >
-                {label}
-                <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-gradient-to-r from-violet-500 to-teal-400 transition-all duration-300 group-hover:w-full" />
-              </a>
-            </li>
-          ))}
+          {navLinks.map(({ href, label }) => {
+            const id = href.replace('#', '');
+            const isActive = activeSection === id;
+            return (
+              <li key={href}>
+                <a
+                  href={href}
+                  className={`relative text-sm font-medium transition-colors duration-200 group ${
+                    isActive ? 'text-white' : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  {label}
+                  <span
+                    className={`absolute -bottom-0.5 left-0 h-px bg-gradient-to-r from-violet-500 to-cyan-400 transition-all duration-300 ${
+                      isActive ? 'w-full shadow-[0_0_8px_rgba(124,58,237,0.8)]' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </a>
+              </li>
+            );
+          })}
           <li>
             <a
               href="#contact"
