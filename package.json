@@ -1,6 +1,7 @@
 {
     "name": "portfolio-website",
     "version": "1.0.0",
+    "type": "module",
     "description": "Portfolio of Prakash Mani Patel — AI/ML Engineer",
     "author": "Prakash Mani Patel",
     "scripts": {

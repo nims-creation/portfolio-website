@@ -1,6 +1,7 @@
 // src/components/Footer.jsx
 import React, { useState, useEffect } from 'react';
-import { FiGithub, FiLinkedin, FiMail, FiArrowUp, FiBrain } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from 'react-icons/fi';
+import { FaBrain } from 'react-icons/fa';
 
 const socials = [
   {
@@ -49,7 +50,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start gap-2">
             <div className="flex items-center gap-2">
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-cyan-500 shadow-[0_0_12px_rgba(124,58,237,0.5)]">
-                <FiBrain className="text-white text-xs" />
+                <FaBrain className="text-white text-xs" />
               </div>
               <span
                 className="text-lg font-bold gradient-text"

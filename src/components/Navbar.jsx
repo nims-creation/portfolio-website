@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiBrain } from 'react-icons/fi';
+import { FaBrain } from 'react-icons/fa';
 
 const navLinks = [
   { href: '#home',     label: 'Home' },
@@ -53,7 +53,7 @@ const Navbar = () => {
           style={{ fontFamily: 'Space Grotesk, sans-serif' }}
         >
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-teal-400 shadow-[0_0_16px_rgba(124,58,237,0.6)] transition-shadow duration-300 group-hover:shadow-[0_0_28px_rgba(124,58,237,0.9)]">
-            <FiBrain className="text-white text-base" />
+            <FaBrain className="text-white text-base" />
           </div>
           <span className="text-xl font-bold gradient-text">Prakash.ai</span>
         </a>
