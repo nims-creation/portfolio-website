@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ThankYou from './components/ThankYou';
 import Projects from './components/Projects';
+import NotFound from './components/NotFound';
 import ScrollProgress from './components/ScrollProgress';
 import PageTransition from './components/PageTransition';
 import { AnimatePresence } from 'framer-motion';
@@ -37,6 +38,11 @@ const App = () => {
             <Route path="/thank-you" element={
               <PageTransition>
                 <ThankYou />
+              </PageTransition>
+            } />
+            <Route path="*" element={
+              <PageTransition>
+                <NotFound />
               </PageTransition>
             } />
           </Routes>
